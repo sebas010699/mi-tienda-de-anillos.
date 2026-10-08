@@ -134,6 +134,11 @@
       aspect-ratio: 1 / 1;
       object-fit: contain;
       background: #f5f6f2;
+      transition: opacity .24s ease, transform .24s ease;
+    }
+    .hero-featured img.is-changing {
+      opacity: 0;
+      transform: scale(.97);
     }
     .featured-caption {
       display: flex;
@@ -265,6 +270,32 @@
       revealTargets.forEach((target) => revealObserver.observe(target));
     } else {
       revealTargets.forEach((target) => target.classList.add("is-visible"));
+    }
+
+    const featuredCard = document.querySelector(".hero-featured");
+    const featuredImage = featuredCard.querySelector("img");
+    const featuredName = featuredCard.querySelector(".featured-caption span");
+    const featuredPrice = featuredCard.querySelector(".featured-caption strong");
+    const productCards = [...document.querySelectorAll(".card")];
+    let featuredIndex = 0;
+
+    function showNextFeaturedProduct() {
+      featuredImage.classList.add("is-changing");
+      window.setTimeout(() => {
+        featuredIndex = (featuredIndex + 1) % productCards.length;
+        const product = productCards[featuredIndex];
+        const productImage = product.querySelector("img");
+        featuredImage.src = productImage.src;
+        featuredImage.alt = productImage.alt;
+        featuredName.textContent = product.querySelector("h3").textContent;
+        featuredPrice.textContent = product.querySelector(".price").textContent;
+        featuredCard.setAttribute("aria-label", `Ver ${featuredName.textContent}, ${featuredPrice.textContent}`);
+        featuredImage.classList.remove("is-changing");
+      }, 240);
+    }
+
+    if (productCards.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.setInterval(showNextFeaturedProduct, 4500);
     }
   </script>
 </body>
