@@ -62,6 +62,140 @@
     .card:hover img { filter: saturate(1.08); }
     .buy { transition: background .2s ease, transform .2s ease, box-shadow .2s ease; }
     .buy:active, .hero-cta:active { transform: translateY(0) scale(.98); }
+    :root {
+      --ink: #252923;
+      --muted: #6f746d;
+      --cream: #f5f6f1;
+      --white: #fff;
+      --gold: #a17a43;
+      --line: #e1e5de;
+      --green: #344d3d;
+    }
+    header {
+      min-height: 78px;
+      padding: 16px max(5%, calc((100% - 1240px) / 2));
+      background: var(--white);
+    }
+    header a:last-child {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      align-items: center;
+      gap: 56px;
+      min-height: 430px;
+      padding: 44px max(6%, calc((100% - 1160px) / 2));
+      background: linear-gradient(115deg, #e8eee8 0%, #f4f5ef 66%, #eeeee5 100%);
+      text-align: left;
+    }
+    .hero-copy { max-width: 590px; }
+    .hero .eyebrow { color: var(--green); }
+    .hero h1 {
+      max-width: 620px;
+      margin: 18px 0;
+      font: normal 62px/1.04 Georgia, serif;
+    }
+    .hero p {
+      max-width: 490px;
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    .hero-cta, .buy { background: var(--green); }
+    .hero-cta {
+      margin-top: 27px;
+      padding: 15px 23px;
+    }
+    .hero-cta:hover, .buy:hover { background: var(--gold); }
+    .hero-featured {
+      display: block;
+      width: min(100%, 390px);
+      justify-self: end;
+      padding: 16px;
+      border: 1px solid rgba(52,77,61,.12);
+      background: rgba(255,255,255,.88);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 0 18px 44px rgba(37,41,35,.08);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .hero-featured:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px rgba(37,41,35,.13);
+    }
+    .hero-featured img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #f5f6f2;
+    }
+    .featured-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 15px 2px 3px;
+      font: 18px Georgia, serif;
+    }
+    .featured-caption strong {
+      color: var(--green);
+      font: bold 14px Arial, sans-serif;
+    }
+    .favorites { max-width: 1280px; padding-top: 68px; }
+    .favorites > .eyebrow { display: block; text-align: center; color: var(--green); }
+    .favorites h2 { margin-bottom: 10px; font-size: 38px; }
+    .subtitle { margin-bottom: 38px; }
+    .products { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px; }
+    .card {
+      grid-column: span 2;
+      padding: 14px;
+      border-color: var(--line);
+      box-shadow: 0 4px 16px rgba(37,41,35,.035);
+    }
+    .card:nth-last-child(2):nth-child(3n+1) { grid-column: 2 / span 2; }
+    .card:hover { box-shadow: 0 14px 30px rgba(37,41,35,.11); }
+    .card img { background: #f2f4ef; }
+    .card h3 { font-size: 20px; }
+    .description { font-size: 13px; }
+    .price { color: var(--green); font-size: 15px; }
+    .buy { padding: 14px 10px; font-size: 10px; }
+    footer { background: var(--ink); }
+    @media (max-width: 820px) {
+      .hero { gap: 30px; padding-right: 5%; padding-left: 5%; }
+      .hero h1 { font-size: 50px; }
+      .products { gap: 16px; }
+    }
+    @media (max-width: 680px) {
+      header { min-height: 68px; }
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 32px 6% 26px;
+        text-align: center;
+      }
+      .hero-copy { margin: auto; }
+      .hero h1 { margin: 16px auto; font-size: 44px; }
+      .hero p { margin: auto; font-size: 14px; }
+      .hero-featured { justify-self: center; width: min(100%, 260px); padding: 10px; }
+      .favorites { padding: 50px 16px 60px; }
+      .favorites h2 { font-size: 34px; }
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .card, .card:nth-last-child(2):nth-child(3n+1) { grid-column: auto; padding: 10px; }
+      .card:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc((100% - 14px) / 2); justify-self: center; }
+    }
+    @media (max-width: 420px) {
+      .brand { font-size: 19px; }
+      header a:last-child { font-size: 9px; }
+      .hero h1 { font-size: 39px; }
+      .card h3 { font-size: 17px; }
+      .buy { font-size: 9px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: .01ms !important;
@@ -79,13 +213,19 @@
   </header>
   <main id="inicio">
     <section class="hero">
-      <span class="eyebrow">Detalles que hablan de ti</span>
-      <h1>Accesorios para<br>llevar siempre</h1>
-      <p>Diseños especiales para acompañarte todos los días. Encuentra tu próximo favorito y pídelo directamente por WhatsApp.</p>
-      <a class="hero-cta" href="#favoritos">Explorar colección ↓</a>
+      <div class="hero-copy">
+        <span class="eyebrow">Detalles que hablan de ti</span>
+        <h1>Accesorios para<br>llevar siempre</h1>
+        <p>Diseños especiales para acompañarte todos los días. Encuentra tu próximo favorito y pídelo directamente por WhatsApp.</p>
+        <a class="hero-cta" href="#favoritos">Explorar colección ↓</a>
+      </div>
+      <a class="hero-featured" href="#favoritos" aria-label="Ver Anillo Oso, $89.000">
+        <img src="https://i.imgur.com/NfxWV06.png" alt="Anillo Oso dorado">
+        <span class="featured-caption"><span>Anillo Oso</span><strong>$89.000</strong></span>
+      </a>
     </section>
     <section class="favorites" id="favoritos">
-      <span class="eyebrow" style="display:block;text-align:center">Una selección especial</span>
+      <span class="eyebrow">Una selección especial</span>
       <h2>Nuestros favoritos</h2>
       <p class="subtitle">Cinco piezas para darle un toque especial a tu estilo.</p>
       <div class="products">
@@ -110,7 +250,7 @@
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank", "noopener,noreferrer");
       });
     });
-    const revealTargets = document.querySelectorAll("header, .hero .eyebrow, .hero h1, .hero p, .hero-cta, .favorites > .eyebrow, .favorites h2, .subtitle, .card, footer");
+    const revealTargets = document.querySelectorAll("header, .hero .eyebrow, .hero h1, .hero p, .hero-cta, .hero-featured, .favorites > .eyebrow, .favorites h2, .subtitle, .card, footer");
     revealTargets.forEach((target) => target.classList.add("reveal"));
 
     if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
